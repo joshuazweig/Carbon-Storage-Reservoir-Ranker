@@ -1,0 +1,35 @@
+Base Data
+Natinoal Energy Technology Lab
+http://www.netl.doe.gov/research/coal/carbon-storage/natcarb-atlas/data-download
+
+
+Population Data
+US Census Beareu
+Urban Area Data from http://www.census.gov/geo/maps-data/data/tiger-data.html
+
+
+Eaerthquake Data
+US Geological Survey
+http://earthquake.usgs.gov/hazards/qfaults/
+
+
+Natinoal Parks
+DoT
+http://catalog.data.gov/dataset/national-parks
+
+
+Drinking Water
+US Forest Service (Normalized 0 -100)
+http://data.fs.usda.gov/geodata/edw/edw_resources/meta/S_USA.ForestsToFaucets.xml
+
+
+Remember not to include canada
+Talk about why in paper (data isnt there for urban centers, parks, etc)
+
+
+
+Vectorizing Faults
+Longtitude and Latitiude of center.
+Shape of the fault (for contains and distances
+Slip rate to score how active of a fault it is.
+Normalized = (x - min(xi)) / (max(xi) - min(xi))
