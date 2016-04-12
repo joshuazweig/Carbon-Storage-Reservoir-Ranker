@@ -15,13 +15,12 @@ for rec in nps_records:
   nps_coords.append(dic.copy())
   i += 1
 
-for a in nps_coords:
-  print(a)
+######################################End National Park Data###############################################
+
+
 # water = shapefile.Reader("./Data/Water/ForestsToFaucets")
 # water_records = water.records()
 
-
-######################################End National Park Data###############################################
 
 #######################################Load Fault Data###################################################
 #Fill a list of dictionaries with Long, Lat of Fault Center, Shape file of fault and Slip Rate Score
