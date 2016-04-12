@@ -1,15 +1,30 @@
 import shapefile
 #import arcpy 
 
-# nps = shapefile.Reader("./Data/Nat Parks/nps_boundary")
-# nps_records = nps.records()
-# nps_shapes = nps.shapeRecords()
-# nps_fields = nps.fields
-# nps_geo = []
+###############################Load National Park Data#####################################################
+#Fill a list of dictionaries with Long, Lat of Park Center, Shape file of Pakr
+#Assume parks are equally important (score will only be a function of distance and no particular char of park)
+nps = shapefile.Reader("./Data/Nat Parks/nps_boundary")
+nps_records = nps.records()
+nps_shapes = nps.shapeRecords()
+print(nps.fields)
+nps_coords = []
+i = 0
+for rec in nps_records:
+  dic = {'Long' : rec[len(nps_records[0]) - 2], 'Lat' : rec[len(nps_records[0]) - 1], 'Shape' : nps_shapes[i]}
+  nps_coords.append(dic.copy())
+  i += 1
 
+for a in nps_coords:
+  print(a)
 # water = shapefile.Reader("./Data/Water/ForestsToFaucets")
 # water_records = water.records()
 
+
+######################################End National Park Data###############################################
+
+#######################################Load Fault Data###################################################
+#Fill a list of dictionaries with Long, Lat of Fault Center, Shape file of fault and Slip Rate Score
 fault = shapefile.Reader("./Data/sectionsALL")
 fault_records = fault.records()
 fault_shapes = fault.shapeRecords()
@@ -36,11 +51,14 @@ for rec in fault_records:
     min_slip_rate = rec[6]
 
 for rec in fault_records:
-  dic = {'Long' : rec[len(fault_records[0]) - 2], 'Lat' : rec[len(fault_records[0]) - 1], 'Shape' : fault_shapes[i], 'Score' : ((float(rec[6]) - min_slip_rate) / (max_slip_rate - min_slip_rate))}
+  dic = {'Long' : rec[len(fault_records[0]) - 2], 'Lat' : rec[len(fault_records[0]) - 1], 
+    'Shape' : fault_shapes[i], 'Score' : ((float(rec[6]) - min_slip_rate) / (max_slip_rate - min_slip_rate))}
   fault_coords.append(dic.copy())
   i += 1
 
-for s in fault_coords:
-  print(s['Score'])
+#################################End Load Fault Data########################################################
+
 #population
+#.gdb
+
 #res
