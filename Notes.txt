@@ -33,3 +33,12 @@ Longtitude and Latitiude of center.
 Shape of the fault (for contains and distances
 Slip rate to score how active of a fault it is.
 Normalized = (x - min(xi)) / (max(xi) - min(xi))
+
+
+
+
+ToDos:
+- Add data read in for the population/city data set
+- Research and write the scoring functions
+- Score everything and append data vectors
+- Run fuzzy c- means clustering 
