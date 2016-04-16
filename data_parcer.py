@@ -6,6 +6,7 @@ from score import *
 #See dic for fields being saved, this dictioantires will later be appended with the rest of the 
 #elements of the data vector scores (prelimenaerlily loaded above, still need ot be computed))
 def get_res_dic():
+  print("Reading reservoir data...")
   res = shapefile.Reader("./Data/Saline/NATCARB_Saline_10K_v1502")
   res_records = res.records()
   #res_shapes = res.shapeRecords()
@@ -40,6 +41,7 @@ def get_res_dic():
 #Fill a list of dictionaries with Long, Lat of Park Center, Shape file of Pakr
 #Assume parks are equally important (score will only be a function of distance and no particular char of park)
 def get_nps_dic():
+  print("Reading National Park data...")
   nps = shapefile.Reader("./Data/Nat Parks/nps_boundary")
   nps_records = nps.records()
   #nps_shapes = nps.shapeRecords()
@@ -61,6 +63,7 @@ def get_nps_dic():
 #Fill water list with long, lat, and score as given by the US forest service
 
 def get_water_dic():
+  print("Reading water source data...")
   water = shapefile.Reader("./Data/Water/ForestsToFaucets")
   water_records = water.records()
  # water_shapes = water.shapeRecords()
@@ -78,6 +81,7 @@ def get_water_dic():
 #######################################Load Fault Data###################################################
 #Fill a list of dictionaries with Long, Lat of Fault Center, Shape file of fault and Slip Rate Score
 def get_fault_dic():
+  print("Reading fault line data...")
   fault = shapefile.Reader("./Data/sectionsALL")
   fault_records = fault.records()
   #fault_shapes = fault.shapeRecords()
