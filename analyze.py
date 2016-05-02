@@ -66,7 +66,7 @@ from tempfile import TemporaryFile
 
 #numpy.save('dump', dta)
 
-dta = numpy.load('clean.npy')
+dta = numpy.load('pca.npy')
 #print(dta[0])
 #Yay! Everything is vectorized! That was hardish
 #Not as hard as I tohught it would be 
@@ -87,8 +87,8 @@ for i in range(6, 10):
   #print(dta[0])
   dta = numpy.array(dta, dtype = float)
   print(dta.shape)
-  dta = numpy.transpose(dta)
-  centeres, fuzzy_partiioned, u0, distances, jm, p, fpc = fuzz.cmeans(dta, i, 2, error=0.002, maxiter=1000, init=None)
+  # dta = numpy.transpose(dta)
+  # centeres, fuzzy_partiioned, u0, distances, jm, p, fpc = fuzz.cmeans(dta, i, 2, error=0.002, maxiter=1000, init=None)
   # print("Center: ", centeres)
   # print("Fuzzy Partitioned Matrix: ", fuzzy_partiioned)
   # print("u0: ", u0)
@@ -106,8 +106,8 @@ for i in range(6, 10):
   print(fuzzy_partiioned.shape)
   parallel_coordinates(fuzzy_partiioned).show()
   #pc(fuzzy_partiioned, [0]).show()
-  pca = PCA(3)
-  pca.fit_transform(dta)
+  # pca = PCA(3)
+  # pca.fit_transform(dta)
   x = fuzzy_partiioned[:,0]
   y = fuzzy_partiioned[:,1]
   z = fuzzy_partiioned[:,2]
