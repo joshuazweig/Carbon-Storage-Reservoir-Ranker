@@ -6,31 +6,33 @@ from score import *
 #See dic for fields being saved, this dictioantires will later be appended with the rest of the 
 #elements of the data vector scores (prelimenaerlily loaded above, still need ot be computed))
 def get_res_dic():
+  #print(datetime.datetime.now().time())
   print("Reading reservoir data...")
   res = shapefile.Reader("./Data/Saline/NATCARB_Saline_10K_v1502")
   res_records = res.records()
   #res_shapes = res.shapeRecords()
   res_coords = []
   i = 0
-  for rec in res_records:
-    dic = {
-    'Resource Name' : rec[3],
-    'Basin Name' : rec[4],
-    'Avg Volume/Capacity Estimate' : rec[7],
-    'Depth' : rec[9],
-    'Thickness' : rec[10],
-    'Salinity' : rec[11], 
-    'Preassure' : rec[12],
-    'Temperature' : rec[13],
-    'Porosity' : rec[14],
-    'Permeability' : rec[15],
-    'Area' : rec[22],
-    'Long' : rec[23],
-    'Lat' : rec[24]
-    #'Shape' : res_shapes[i]
-    }
-    res_coords.append(dic.copy())
-    i += 1
+  for idx, rec in enumerate(res_records):
+    if(idx%10 == 0):
+      dic = {
+      'Resource Name' : rec[3],
+      'Basin Name' : rec[4],
+      'Avg Volume/Capacity Estimate' : rec[7],
+      'Depth' : rec[9],
+      'Thickness' : rec[10],
+      'Salinity' : rec[11], 
+      'Preassure' : rec[12],
+      'Temperature' : rec[13],
+      'Porosity' : rec[14],
+      'Permeability' : rec[15],
+      'Area' : rec[22],
+      'Long' : rec[23],
+      'Lat' : rec[24]
+      #'Shape' : res_shapes[i]
+      }
+      res_coords.append(dic.copy())
+      i += 1
 
   return res_coords
 
@@ -41,6 +43,7 @@ def get_res_dic():
 #Fill a list of dictionaries with Long, Lat of Park Center, Shape file of Pakr
 #Assume parks are equally important (score will only be a function of distance and no particular char of park)
 def get_nps_dic():
+  #print(datetime.datetime.now().time())
   print("Reading National Park data...")
   nps = shapefile.Reader("./Data/Nat Parks/nps_boundary")
   nps_records = nps.records()
@@ -63,6 +66,7 @@ def get_nps_dic():
 #Fill water list with long, lat, and score as given by the US forest service
 
 def get_water_dic():
+  #print(datetime.datetime.now().time())
   print("Reading water source data...")
   water = shapefile.Reader("./Data/Water/ForestsToFaucets")
   water_records = water.records()
@@ -81,6 +85,7 @@ def get_water_dic():
 #######################################Load Fault Data###################################################
 #Fill a list of dictionaries with Long, Lat of Fault Center, Shape file of fault and Slip Rate Score
 def get_fault_dic():
+  #print(datetime.datetime.now().time())
   print("Reading fault line data...")
   fault = shapefile.Reader("./Data/sectionsALL")
   fault_records = fault.records()
