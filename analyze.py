@@ -96,21 +96,21 @@ for i in range(6, 10):
   # print("jm: ", jm)
   # print("p: ", p)
 
-  print("fpc: ", fpc)
+  # print("fpc: ", fpc)
 
   # Store fpc values for later
-  fpcs.append(fpc)
+  # fpcs.append(fpc)
 
 #  fuzzy_partiioned = numpy.transpose(fuzzy_partiioned)
 
-  print(fuzzy_partiioned.shape)
-  parallel_coordinates(fuzzy_partiioned).show()
+  # print(fuzzy_partiioned.shape)
+  # parallel_coordinates(fuzzy_partiioned).show()
   #pc(fuzzy_partiioned, [0]).show()
   # pca = PCA(3)
   # pca.fit_transform(dta)
-  x = fuzzy_partiioned[:,0]
-  y = fuzzy_partiioned[:,1]
-  z = fuzzy_partiioned[:,2]
+  x = dta[:,0]
+  y = dta[:,1]
+  z = dta[:,2]
   fig = plt.figure()
   ax = fig.add_subplot(111, projection='3d')
   ax.scatter(x, y, z, zdir='z', c= 'red')
