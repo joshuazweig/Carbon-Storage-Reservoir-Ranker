@@ -66,7 +66,7 @@ from tempfile import TemporaryFile
 
 #numpy.save('dump', dta)
 
-dta = numpy.load('dump.npy')
+dta = numpy.load('clean.npy')
 #print(dta[0])
 #Yay! Everything is vectorized! That was hardish
 #Not as hard as I tohught it would be 
@@ -80,8 +80,6 @@ labels = numpy.empty(1)
 fig1, axes1 = plt.subplots(3, 3)
 #alldata = numpy.vstack((xpts, ypts))
 fpcs = []
-
-conn = sqlite3.connect(':memory:')
 
 for i in range(6, 10):
 
@@ -106,27 +104,26 @@ for i in range(6, 10):
 #  fuzzy_partiioned = numpy.transpose(fuzzy_partiioned)
 
   print(fuzzy_partiioned.shape)
-  #parallel_coordinates(fuzzy_partiioned).show()
+  parallel_coordinates(fuzzy_partiioned).show()
   #pc(fuzzy_partiioned, [0]).show()
-  #fuzzy_partiioned = numpy.transpose(fuzzy_partiioned)
-  #pca = PCA(3)
-  #pca.fit_transform(fuzzy_partiioned)
-  #x = fuzzy_partiioned[:,0]
-  #y = fuzzy_partiioned[:,1]
-  #z = fuzzy_partiioned[:,2]
+  pca = PCA(3)
+  pca.fit_transform(dta)
+  x = fuzzy_partiioned[:,0]
+  y = fuzzy_partiioned[:,1]
+  z = fuzzy_partiioned[:,2]
   fig = plt.figure()
   ax = fig.add_subplot(111, projection='3d')
-  #ax.scatter(x, y, z, zdir='z', c= 'red')
-  #ax.scatter(fuzzy_partiioned[0], fuzzy_partiioned[1], fuzzy_partiioned[2], zdir='z', c= 'red')
+  ax.scatter(x, y, z, zdir='z', c= 'red')
+  #ax.scatter(dta[0], dta[1], dta[2], zdir='z', c= 'red')
 
-  pcb = PCA(3)
-  pcb.fit_transform(centeres)
+  # pcb = PCA(3)
+  # pcb.fit_transform(centeres)
   # x1 = centeres[:,0]
   # y1 = centeres[:,1]
   # z1 = centeres[:,2]
   # ax1 = fig.add_subplot(111, projection='3d')
   # ax.scatter(x1, y1, z1, zdir='z', c= 'green')
-  ax.scatter(centeres[0], centeres[1], centeres[2], zdir='z', c= 'green')
+  #ax.scatter(centeres[0], centeres[1], centeres[2], zdir='z', c= 'green')
 
   # ax1 = fig.add_subplot(111)
   # pca = PCA(3)
