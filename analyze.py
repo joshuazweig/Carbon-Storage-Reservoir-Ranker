@@ -88,7 +88,7 @@ for i in range(6, 10):
   dta = numpy.array(dta, dtype = float)
   print(dta.shape)
   # dta = numpy.transpose(dta)
-  # centeres, fuzzy_partiioned, u0, distances, jm, p, fpc = fuzz.cmeans(dta, i, 2, error=0.002, maxiter=1000, init=None)
+  centeres, fuzzy_partiioned, u0, distances, jm, p, fpc = fuzz.cmeans(dta, i, 2, error=0.002, maxiter=1000, init=None)
   # print("Center: ", centeres)
   # print("Fuzzy Partitioned Matrix: ", fuzzy_partiioned)
   # print("u0: ", u0)
@@ -108,14 +108,21 @@ for i in range(6, 10):
   #pc(fuzzy_partiioned, [0]).show()
   # pca = PCA(3)
   # pca.fit_transform(dta)
-  x = dta[:,0]
-  y = dta[:,1]
-  z = dta[:,2]
   fig = plt.figure()
   ax = fig.add_subplot(111, projection='3d')
-  ax.scatter(x, y, z, zdir='z', c= 'red')
+
+  # x = dta[:,0]
+  # y = dta[:,1]
+  # z = dta[:,2]
+  # ax.scatter(x, y, z, zdir='z', c= 'red')
   #ax.scatter(dta[0], dta[1], dta[2], zdir='z', c= 'red')
 
+
+  x1 = centeres[:,0]
+  y1 = centeres[:,1]
+  z1 = centeres[:,2]
+  ax.scatter(x1, y1, z1, zdir='z', c= 'red')
+ # ax.scatter(fuzzy_partiioned[0], fuzzy_partiioned[1], fuzzy_partiioned[2], zdir='z', c= 'red')
   # pcb = PCA(3)
   # pcb.fit_transform(centeres)
   # x1 = centeres[:,0]
