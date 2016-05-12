@@ -59,19 +59,31 @@ Important Charecterists
 \section{Methodology}
 \subsection{Overview}
 As described in the previous section, saline aquifers are luckily a far vast enough resource for us to currently store the desired amount of carbon. However, selecting the best aquifers for storage is a tremendous task considering the quantity of potential aquifers ($\approx180,000$) and the factors that characterize each one. For this reason we seek to develop a tool to immediately help identify some of the best candidate deep saline aquifers in the United States. 
-The fundamental workings of this tool will be in the characterization of potential aquifers based on a series of characteristics as per section \ref{wellchar}. Having fully characterized each candidate aquifer, we fully employ a Fuzzy c-Means clustering analysis to each of the $\approx180,000$, 12 dimensional vectors representing the system to create a model that will determine how strongly each aquifer is characterized by each of the 12 features, to be discusses further in section \ref{fuzz}. Once this model is created, it will allow researchers to essentially filter potential storage sites by different characteristics. For example, we will be able to observe all aquifers that have at least a given storage capacity and/or are at least a given distance from a major fault line.  
+The fundamental workings of this tool will be in the characterization of potential aquifers based on a series of characteristics as per section \ref{wellchar}. Having fully characterized each candidate aquifer, we fully employ a Fuzzy c-Means clustering analysis to each of the $\approx180,000$, 12 dimensional vectors representing the system to create a model that will determine how strongly each aquifer is characterized by each of the 12 features, to be discusses further in section \ref{fuzz}. Once this model is created, it will allow researchers to essentially filter potential storage sites by different characteristics and determine the relative similarity of unique sets of sites. For example, we will be able to observe all aquifers that have at least a given storage capacity and/or are at least a given distance from a major fault line.  
 
 \subsection{Saline Aquifer Characterization} \label{wellchar}
-Each of the 12 characterization features falls into one of two categories. The first category of features describes the geological aspects of the aquifer, strictly its ability to store carbon. The second describes some of the factors that effect the potential risks and barriers to societal acceptance regarding potential storage sights. 
+Each of the 12 characterization dimensions falls into one of two categories. The first category of features describes the geological aspects of the formation, strictly its ability to store carbon. The second describes some of the factors that effect the potential risks and barriers to societal acceptance regarding potential storage sights. These 
 
 \subsubsection{Geological Characterization}
-Natcarb
+The data regarding the geological characterization of the formations is from the data set "NATCARB Saline 10K, ver. 1502)" provided by the NATCARB project at the National Energy Technology Laboratory. The data primarily contains information on formations in the United States, which is the primary reason that this work is limited in scope the formations in the U.S. The dimensions included in the data set that will be combined with the data from the next section are \cite{atlas}: 
+\begin{itemize}
+\item \emph{Avg Volume/Capacity Estimate} Best estimate of storage capacity in metric tons. 
+\item \emph {Depth} The mean depth in feet of the resource
+\item \emph{Thickness}
+\item \emph{Salinity} Mean salinity (total dissolved solids) of the resource
+\item \emph{Pressure} Mean pressure in PPI of the formation
+\item \emph{Temperature} Mean temperature in degrees Fahrenheit of the resource 
+\item \emph{Porosity} Mean porosity percentage of the formation
+\item \emph{Permeability} Mean permeability in millidarcies
+\item \emph{Area, Longitude and Latitude} Given by the GIS shape file
+\end{itemize}
+
+
 
 \subsubsection{non-Geological Characterization}
 
 The list below is a list of dimensions used to characterize saline formations with respect to environmental features not directly related to the ability of the formation to store carbon.
-They are listed with reasonings for their inclusion in this early stage work in no particular order. 
-
+They are listed with reasonings for their inclusion in this early stage work in no particular order. As discussed in subsection \ref{betterchar}, this is a preliminary set of features I am considering for their importance and readily available data, but this by no means form an exhaustive list of relevant features of an injection site. The collection is meant to characterize storage potentials of saline formations, and for that reason I regard the dimension of the data set to be complete in this regard \cite{atlas}.
 
 \begin{enumerate}
 \item \emph{Potential Impact on Drinking Water Sources} It comes as no surprise that the proximity of a potential injection site to an important source of drinking water is important in considering the site's viability.  This notion is affirmed by the application of the Safe Drinking Water Act's Underground Injection Control program to carbon injection and the introduction of Class IV wells by the EPA in 2010 \cite{natcarb_risk}. Furthermore, with the current socio-political climate around fracking in the United States, considerations of injection impact on drinking water must be especially well considered before gaining the public acceptance of a project. \\
@@ -88,23 +100,22 @@ Here, $dist(n_i, r_j)$ is the geographical distance between the center of the sa
    \caption{\label{inducedfig} From \cite{seis_induced}. Count of M $\geq3$ earthquakes in the central and eastern United States from 1973 to April 2015. Two abrupt increases in the earthquake rate occurred in 2009 and 2013. Red dots represent earthquakes that occurred between 2009 and April 2015, and blue dots represent earthquakes that occurred between 1973 and 2008. Prior to 2009, earthquakes were spread across the United States. Beginning in 2009 the earthquakes are tightly clustered in a few areas}. 
 \end{wrapfigure}
 
-The data used for enumerating this dimension of each well was the "Quaternary Fault and Fold Database of the United States," provided by the U.S. Geological Service. The data base included the shape and gepgraphical positioning of each fault in the U.S. as well as the slip rate, a measure of the activity of the fault. Following the same logic in (1) lead me to the formula 
+The data used for enumerating this dimension of each well was the "Quaternary Fault and Fold Database of the United States," provided by the U.S. Geological Service. The data base included the shape and geographical positioning of each fault in the U.S. as well as the slip rate, a measure of the activity of the fault. Following the same logic in (1) lead me to the formula 
 $$score(n_i) =  \mathbb{E}\bigg[\sum_{j=0}^k \frac{s_j}{dist^2(n_i, r_j)}\bigg]$$
 where $s_j$ here is the slip rate of the $j$th fault and $dist(n_i, r_j)$ is the distance between the $i$th injection site and the nearest point to it on the $j$th fault line. 
 
-
-\item \emph{Proximity to and Size of Population Centers} 
-
-
+\item \emph{Proximity to and Size of Population Centers} A major concern with many drilling projects is public acceptance. It doesn't matter how great of a resource Manhattan could hypothetically be sitting on top of, carbon won't be stored under it any time soon. With any \emph{perceived} potential risk this might have to the surrounding area, a population, especially a large population, is likely to be slow to accept and approve the project. In the current zeitgeist, it is likely that 2 million people would prefer to have a few more tons in the atmosphere than sitting under their homes. The importance of a potential injection site's relationship to a population center is discussed in \cite{seis_induced} and is certainly an important aspect of the viability of any potential site. 
 
 The scoring for this dimension is based on data from the U.S. Census Beareu. Each of the 500 U.S. cities with the largest populations were listed with their populations and geographical coordinates. Similar logic was applied to scoring potential injection sites with respect to this dimension as was applied to the above dimension. However, in this instance we have $s_j$ as the total population of the $j$th city. This again gives,
 $$score(n_i) =  \mathbb{E}\bigg[\sum_{j=0}^k \frac{s_j}{dist^2(n_i, r_j)}\bigg]$$
 
 
-\item \emph{Proximity to National Parks}
-\end{enumerate} 
+\item \emph{Proximity to National Parks} While the immediate threat to human life is lower than that of a city, the public or governmental acceptance of performing an injection under or near a National Park or Federally protected land must be considered in tandem with the viability of a potential site. This is motivated by the same reasoning discussed in the above three items.
 
-Cover where you got your data and why you chose the features. dimensions you chose
+To score National Parks, I set $s_j = 1 \forall j$ to avoid making value judgements about the importance of different parks. Here, the function $dist(n_i, r_j)$ is the distance between the geographical center of a park $r_j$ and injection site $n_i$.
+$$score(n_i) =  \mathbb{E}\bigg[\sum_{j=0}^k \frac{s_j = 1}{dist^2(n_i, r_j)}\bigg]$$
+
+\end{enumerate} 
 
 
 
@@ -112,12 +123,18 @@ Cover where you got your data and why you chose the features. dimensions you cho
 So that this paper can be self contained, I include an introduction to Fuzzy c-Means clustering and related concepts. This section will consist of an introduction to clustering followed by the way in which it is applied to this work.
 
 \subsubsection{Introduction to Fuzzy c-Means Clustering}
+\par In general, clustering is an analysis in machine learning theory that takes in $x$ data elements and outputs a set of $k$ buckets, where each element, $x_i$ belongs to exactly one bucket, $k_j$. The goal here is for the algorithm to halt in the state such that $\forall k_j, k_j = \{$most similar items$\}$, where $\|k_j\|$ is not necessarily the same for any two buckets. From this the question arises, what does \emph{similar} mean? This definition will be the deciding factor in how we determine the elements of our $k$ buckets.   
 
+\par There are many different notions of \emph{similar} in clustering theory, but the most applicable to be discussed here is that of centroid-based clustering. In centroid-based clustering, the goal is to find $k$ central vectors that minimize the sum-squared distances to each of the $\leq j$ vectors that they contain. Fuzzy Clustering, deriving its name from Fuzzy Logic as published by Columbia alumnus Lotfi Zadeh in the 1960s, is the paradigm under which each of the $j$ objects in the data set has a degree of membership (a sum squared distance) to each of the $k$ centers. In traditional $k$-means Clustering, each of the $j$ objects distance with respect to only one center would be minimized. Though this form of clustering is much better studied than Fuzzy c-Means, it is not as suitable to this application because there is a lot of value to be had in minimizing membership to each of the $k$ clusters, rather than maximizing membership to one of them, to be further discussed in the next section.  
+\emph{N.B.} For more detailed information on Fuzzy c-Means clustering and the implementation of the algorithm employed by this paper see \cite{cmeanspaper}. 
 
 \subsubsection{Application of Fuzzy c-Means Clustering} 
+\par The choice of Fuzzy c-Means clustering follows from the idea that the factors that define the viability of a formation in many cases, especially with respect to those features isolated for this work, is defined by the risks associated with injection into that site. In terms of Fuzzy c-Means clustering, we can think therefore think about sites that incur the most risk in terms of their membership coefficient to the subset of the $k$ clusters that reflect risk.\footnote{This section assumes the construction of the vectors as described in Section \ref{wellchar}}. Since we in fact want to mitigate this risk, the subset of the $j$ formations that have the lowest membership coefficients with respect to the negative risk centers will be deemed the potential injection sites with the least relevant risk.
 
-\subsection{Analysis of Site Already in Use}
-Talk about the few points that represent wells that are already in use and how they fit in your model. 
+\par Further motivating the choice of a Fuzzy clustering algorithm is that the purpose of this work is not to only prescribe which potential sites are best for injection, but more importantly to create a model that will allow people in the field to make this conjecture based on the tool's analysis. In discovering membership coefficients of each potential site with respect to each cluster center, a Fuzzy clustering analysis provides significantly more information to make a decision off of. For example, this Fuzzy clustering model of the data will allow for queries given a certain threshold tolerance for potential impact on a water source and a certain minimum capacity of storage that the mode. Further, based on the success of previously completed saline injection projects we can discover potential sites with similar properties because in its nature this Fuzzy cluster based model immediately clusters like vectors (representations of formations) together. Thus, we can plot vectors representing already existing projects and see what other sites are clustered with them to prescribe sites for future injection. 
+
+%\subsection{Analysis of Sites Already in Use}
+%Talk about the few points that represent wells that are already in use and how they fit in your model. 
 
 
 \section{Results}
@@ -139,12 +156,16 @@ These are some of the results
 \section{Discussion and Analysis}
 
 \section{Future Work}
-\subsection{Better Characterization of Saline Formations}
+\subsection{Better Characterization of Saline Formations}\cite{betterchar}
 The 12 features isolated for characterization are a minimal set for reasonable characterization of saline formations. Better and more detailed (higher dimensional) characterizations of these formations would necessarily allow for more data for Fuzzy c-Means clustering to base its similarity measures on, thereby increasing the accuracy and effectiveness of this tool. Further dimensions include the existence of a caprock over the layer of porous rock. The existence of such a caprock is extremely important to the viability of a potential site as it plays an important part in keeping the injected carbon below the surface and in place.  
 
 \subsection{Isolating Better Heuristics for Scoring Formation Dimensions}
+There likely exist some thresholds that it doesnt matter, etc (though i do an ok job now bc than it approaches zero) -- but these are prob diferent for different features
 \section{Conclusion}
 
+
+
+Value judgements -- who is to say how imporatant it is to not do this under a national park, etc- --- this system allows for quick hypotheses testing based on different criteria, on different values and best of all can isolate some that meet everyones turf the best, givingbetter information of better options 
  
 \begin{thebibliography}{9}
 
@@ -189,6 +210,11 @@ Seismological Research Letters 86, 4 (2015), 1-8.
 Balashov, Victor N., et al.
 \textit{Predictive modeling of CO 2 sequestration in deep saline sandstone reservoirs: impacts of geochemical kinetics}
 Applied geochemistry 30 (2013): 41-56.
+
+\bibitem{cmeanspaper}
+Bezdek, James C., Robert Ehrlich, and William Full.
+\textit{FCM: The fuzzy c-means clustering algorithm}
+Computers and Geosciences 10.2 (1984): 191-203.
 
 \end{thebibliography}
 \end{document}
