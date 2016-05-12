@@ -5,6 +5,7 @@
 \usepackage{cite}
 \usepackage{graphicx}
 \usepackage{wrapfig}
+\usepackage{amsfonts}
 \linespread{1.15}
 \graphicspath{ {images/} }
 
@@ -68,10 +69,12 @@ Natcarb
 \subsubsection{non-Geological Characterization}
 Other sources, check the notes.txt
 The list below is a list of dimensions used to characterize saline formations with respect to environmental features not directly related to the ability of the formation to store carbon.
-They are listed with reasonings for their inclusion in this early stage work in no particular order.
+They are listed with reasonings for their inclusion in this early stage work in no particular order. 
 
 \begin{enumerate}
-\item \emph{Potential Impact on Drinking Water Sources} 
+\item \emph{Potential Impact on Drinking Water Sources} It comes as no surprise that the proximity of a potential injection site to an important source of drinking water is important in considering the site's viability.  This notion is affirmed by the application of the Safe Drinking Water Act's Underground Injection Control program to carbon injection and the introduction of Class IV wells by the EPA in 2010 \cite{natcarb_risk}. Furthermore, with the current socio-political climate around fracking in the United States, considerations of injection impact on drinking water must be especially well considered before gaining the public acceptance of a project. \\
+The scoring of this dimension for each potential injection site is based on the U.S. Forest Service's data set "Forests To Faucets." This data set included the coordinates of each of $k$ water sources in the U.S. and an index, $s \in [0, 100]$ representing the importance of the source as determined by the Forest Service. To compute a score $\in [0, 100]$ for each of the $n$ wells the following method was applied. 
+$$score(n_i) =  \mathbb{E}(\sum_{j=0}^k \frac{s_j}{dist(n_i, r_j)})$$
 
 \item \emph{Proximity to and Size of Population Centers} 
 
@@ -113,7 +116,7 @@ These are some of the results
 \subsection{Better Characterization of Saline Formations}
 The 9 features isolated for characterization are a minimal set for reasonable characterization of saline formations. Better and more detailed (higher dimensional) characterizations of these formations would necessarily allow for more data for Fuzzy c-Means clustering to base its similarity measures on, thereby increasing the accuracy and effectiveness of this tool. Further dimensions include the existence of a caprock over the layer of porous rock. The existence of such a caprock is extremely important to the viability of a potential site as it plays an important part in keeping the injected carbon below the surface and in place.  
 
-
+\subsection{Isolating Better Heuristics for Scoring Formation Dimensions}
 \section{Conclusion}
 
  
@@ -146,6 +149,10 @@ National Energy Technology Laboratory, 1 Dec. 2012. http://www.netl.doe.gov/publ
 Friedmann, S. 
 \textit{Carbon Storage Atlas V} 
 National Energy Technology Laboratory, 1 Aug 2015.
+
+\bibitem{natcarb_risk}
+\textit{Carbon Storage Technology Program Plan}
+Clean Coal Research Program, Department of Energy. Office of Fossil Energy. 1 Dec. 2014.
 
 \bibitem{PredRisk2013}
 Balashov, Victor N., et al.
