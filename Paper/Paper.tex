@@ -165,9 +165,12 @@ Unfortunately, there are no deterministic algorithms that exist to compute the $
 \end{figure}
 
 \section{Discussion and Analysis}
-\subsubsection{Fuzzy c-Means Results}\label{fcmr}
+\subsubsection{Fuzzy Clustering Results}\label{fcmr}
+Before we discuss the resulting model's implications for analysis of potential carbon storage sites, we must select one of the model's presented in Figure \ref{clusterfig} as the best model. 
+The partition coefficient (FPC) will be important in choosing our preferred model. In discussing the partition coefficient following in the work of \cite{dunnbar} writing $FPC = \frac{1}{N}\sum_{k = 1}^k \sum_{i = 1}^N m_{ik}^2$. From this definition of the partitioning coefficient we find that $FPC = \frac{1}{k}$, when a given vector $j$ belongs equally to all $k$ clusters and that $FPC = 1$ when $j_{k_i} = 1$ for a unique value of $i$ and $j_{k_i} = 0$ for all other values of $i$, such that $i \in [1, k]$. Now given $FPC \in [\frac{1}{k}, 1]$ we set an optimal value of $FPC_k = avg(\frac{1}{k}, 1) =  \frac{1+k}{2k}$. 
+Originally, the clustering algorithm was to be run $\forall k \in [5,11]$. As per Figure \ref{clusterfig}, this was resolved to a maximum value of $k = 10$ because at $k = 10$ we see $FPC_10 = 1$. In examining $k = 9$, we find that $FPC_9 = \frac{10}{18} \approx \frac{11}{18}$, the optimal value of $FPC$ for $k = 9$. For all $k$, this is the closest value of $FPC_k$ to the optimal value of $FPC_k$, which immediately makes the clustering analysis for $k = 9$ the favorable choice. 
 
-We stopped at k = 10 because FPC became 1
+
 
 
 There are a few silhouette values close to 1, we pick one with highest coefficent 
@@ -233,6 +236,11 @@ Applied geochemistry 30 (2013): 41-56.
 Bezdek, James C., Robert Ehrlich, and William Full.
 \textit{FCM: The fuzzy c-means clustering algorithm}
 Computers and Geosciences 10.2 (1984): 191-203.
+
+\bibitem{dunnbar}
+Trauwaert, E. 
+\textit{On the meaning of Dunn's partition coefficient for fuzzy clusters}
+Fuzzy sets and systems 25.2 (1988): 217-242.
 
 \end{thebibliography}
 
