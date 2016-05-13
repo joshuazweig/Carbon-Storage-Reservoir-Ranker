@@ -1,12 +1,14 @@
-\documentclass[a4paper, 12pt]{article}
+\documentclass[letterpaper, 12pt]{article}
 \usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
 \usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
 \usepackage{fullpage} % changes the margin
 \usepackage{cite}
+\usepackage{subfig}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{amsfonts}
 \usepackage{float}
+
 \linespread{1.15}
 \graphicspath{ {images/} }
 
@@ -94,11 +96,11 @@ Here, $dist(n_i, r_j)$ is the geographical distance between the center of the sa
 
 \item \emph{Proximity to and Magnitude of Fault Lines} In maintaining and verifying reservoirs after injection, fault lines are important because they can serve as potential release pathways for CO$_2$ \cite{natcarb_risk}. In addition to the risk that the carbon will escape, the threat of induced seismicity has become readily apparent. As per figure \ref{inducedfig} and the work done in \cite{seis_induced}, injection of fluids and other substances into ground formations has had a dramatic impact on seismic activity in the Central U.S. It immediately follow from this that increasing seismic activity near already existing faults could be highly problematic. It is primarily for these reasons that a potential injection site's relationship to fault lines and areas of other recorded seismic activity were included in the characterization of each site as one of the preliminary dimensions. 
 
-\begin{wrapfigure}{R}{0.7\textwidth}%this figure will be at the right
+\begin{figure}[H]%this figure will be at the right
   \centering
   \includegraphics[width=0.7\textwidth]{induced}
-   \caption{\label{inducedfig} From \cite{seis_induced}. Count of M $\geq3$ earthquakes in the central and eastern United States from 1973 to April 2015. Two abrupt increases in the earthquake rate occurred in 2009 and 2013. Red dots represent earthquakes that occurred between 2009 and April 2015, and blue dots represent earthquakes that occurred between 1973 and 2008. Prior to 2009, earthquakes were spread across the United States. Beginning in 2009 the earthquakes are tightly clustered in a few areas}. 
-\end{wrapfigure}
+   \caption{\label{inducedfig} From \cite{seis_induced}. Count of M $\geq3$ earthquakes in the central and eastern United States from 1973 to April 2015. Two abrupt increases in the earthquake rate occurred in 2009 and 2013. Red dots represent earthquakes that occurred between 2009 and April 2015, and blue dots represent earthquakes that occurred between 1973 and 2008. Prior to 2009, earthquakes were spread across the United States. Beginning in 2009 the earthquakes are tightly clustered in a few areas.}
+\end{figure}
 
 The data used for enumerating this dimension of each well was the "Quaternary Fault and Fold Database of the United States," provided by the U.S. Geological Service. The data base included the shape and geographical positioning of each fault in the U.S. as well as the slip rate, a measure of the activity of the fault. Following the same logic in (1) lead me to the formula 
 $$score(n_i) =  \mathbb{E}\bigg[\sum_{j=0}^k \frac{s_j}{dist^2(n_i, r_j)}\bigg]$$
@@ -117,9 +119,7 @@ $$score(n_i) =  \mathbb{E}\bigg[\sum_{j=0}^k \frac{s_j = 1}{dist^2(n_i, r_j)}\bi
 
 \end{enumerate} 
 
-
-
-\subsection{Fuzzy c-Means Clustering}\label{fuzz}.
+\subsection{Fuzzy c-Means Clustering}\label{fuzz}
 So that this paper can be self contained, I include an introduction to Fuzzy c-Means clustering and related concepts. This section will consist of an introduction to clustering followed by the way in which it is applied to this work.
 
 \subsubsection{Introduction to Fuzzy c-Means Clustering}
@@ -138,22 +138,40 @@ So that this paper can be self contained, I include an introduction to Fuzzy c-M
 
 
 \section{Results}
-These are some of the results
+Unfortunately, there are no deterministic algorithms that exist to compute the $k$ Fuzzy c-Means clusters from a set of $j$ vectors exactly. For that reason we apply the FPC algorithm cited in Section \ref{fuzz} to approximate the centers of the clustering analysis. Furthermore, since this algorithm requires a predefined $k$, we run the FPC algorithm for $k \in [5,11]$, as it is correct practice to reduce the dimensionality of the data set (in this case $k < 12$) when clustering the $j$ vectors around $k$ centers. Figures \ref{clusterfig} and \ref {k_means_sil} show the graphical results of the clusterings. For exact numerical results regarding the found cluster centers, see the tables in Appendix A. 
 
-\begin{wrapfigure}{R}{0.5\textwidth}%this figure will be at the right
-  \centering
-  \includegraphics[width=0.5\textwidth]{clusters}
-  \caption{\label{clusters} Results of the Fuzzy c-Means clustering on the data sample}. 
-\end{wrapfigure}
+\begin{figure}[H]
+\centering
+\caption{\label{clusterfig} Each Figure (a - e) shows the clusters resulting from the running of the FPC algorithm for unique values if $k$. These results actually occur in 9-dimensional space, so a 6 degree Principal Component Analysis was used to reduce the dimensionality of each vector to 3 so that they could be pictured in these figures. For this reason, some of the detail gets lost, but the clusters are all still decernable.}
+\begin{tabular}{cc}
+  \includegraphics[width=65mm]{k5} &   \includegraphics[width=65mm]{k6} \\
+(a) $k = 5, FPC = 0.6667$ & (b) $k = 6, FPC = .8333$ \\[6pt]
+ \includegraphics[width=65mm]{k7} &   \includegraphics[width=65mm]{k8} \\
+(c) $k = 7, FPC = .8333$ & (d) $k = 8, FPC =  0.6667$ \\[6pt]
+\end{tabular}
+\end{figure}
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
+ \includegraphics[width=65mm]{k9} &   \includegraphics[width=65mm]{k10} \\
+(d) $k = 9, FPC = .6111$ & (e) $k = 10, FPC = 1$ \\[6pt]
+\end{tabular}
+\end{figure}
 
-\begin{wrapfigure}{L}{0.5\textwidth}%this figure will be at the right
+\begin{figure}[H]%this figure will be at the right
    \centering
-  \includegraphics[width=0.5\textwidth]{k_means_sil}
-   \caption{\label{k_means_sil} ... }. 
-\end{wrapfigure}
-
+   \caption{\label{k_means_sil} This is a silhouette plot evaluating the fit of the model to the data. It is a common method of evaluation used in addition to the FPC. This plot shows the silhouette values for each value of $k$. Note that the cluster values range from $[2,7]$. These are offset by $-3$ so a cluster value of 5 on the chart shows $k = 5 + 3 = 8$. In general, the closer the silhouette value is to 1, the better the fit of the model. }
+  \includegraphics[width=0.75\textwidth]{k_means_sil}
+\end{figure}
 
 \section{Discussion and Analysis}
+\subsubsection{Fuzzy c-Means Results}\label{fcmr}
+
+We stopped at k = 10 because FPC became 1
+
+
+There are a few silhouette values close to 1, we pick one with highest coefficent 
+\subsubsection{Translating \ref{fcmr} to Insight on Saline Formations} 
 
 \section{Future Work}
 \subsection{Better Characterization of Saline Formations}\cite{betterchar}
@@ -217,4 +235,76 @@ Bezdek, James C., Robert Ehrlich, and William Full.
 Computers and Geosciences 10.2 (1984): 191-203.
 
 \end{thebibliography}
+
+\pagebreak
+\section{Appendix A}
+These tables compliment the results in Figure \ref{clusterfig}. The tables list the 9-dimensional coordinates of the centers approximated by each run of the Fuzzy c-Means clustering algorithm for $k \in [5,10]$. Note that these centers were originally 12 dimensions (one for each dimension of the feature vectors), but were dimensionally reduced with Principal Component Analysis to reduce the complexity of the computations without loss of generality. 
+
+\begin{table}[h]
+\centering
+\caption{9 dimensional coordinates of the centers found at each run of Fuzzy c-Means clustering.}
+\label{tablecenters}
+\begin{tabular}{lllllllll}
+k = 5   & fpc =   & 0.6667  &         &         &         &         &         &         \\
+0.0015  & -0.0025 & 0.0086  & -0.0107 & -0.0009 & 0.0066  & -0.0126 & 0.0017  & 0.0083  \\
+-0.0107 & -0.0027 & -0.0038 & 0.0017  & 0.0092  & -0.0004 & 0.0225  & -0.0067 & 0.0081  \\
+-0.0083 & 0.0084  & 0.0036  & -0.0016 & -0.0015 & 0.0086  & -0.0107 & -0.0009 & 0.0066  \\
+-0.0052 & 0.0017  & 0.0083  & -0.0107 & -0.0027 & -0.0019 & 0.0017  & 0.0101  & 0.0007  \\
+0.0224  & -0.0067 & 0.0081  & -0.0051 & 0.0085  & -0.0140 & 0.0036  & -0.0019 & 0.0086  \\
+        &         &         &         &         &         &         &         &         \\
+k = 6   & fpc =   & 0.8333  &         &         &         &         &         &         \\
+-0.0006 & 0.0069  & 0.0027  & -0.0092 & 0.0071  & 0.0013  & -0.0035 & 0.0082  & 0.0026  \\
+-0.0092 & 0.0065  & -0.0032 & 0.0082  & 0.0029  & 0.0086  & 0.0031  & -0.0015 & 0.0028  \\
+-0.0007 & 0.0015  & 0.0098  & -0.0025 & 0.0077  & 0.0027  & -0.0092 & 0.0071  & 0.0013  \\
+0.0009  & 0.0082  & 0.0026  & -0.0092 & 0.0065  & -0.0016 & 0.0082  & 0.0027  & 0.0089  \\
+0.0029  & -0.0015 & 0.0030  & 0.0020  & 0.0019  & -0.0050 & 0.0007  & 0.0074  & 0.0027  \\
+-0.0092 & 0.0071  & 0.0013  & -0.0039 & 0.0082  & 0.0026  & -0.0092 & 0.0065  & -0.0017 \\
+
+        &         &         &         &         &         &         &         &         \\
+k = 7   & fpc =   & 0.8333  &         &         &         &         &         &         \\
+0.0015  & -0.0025 & 0.0086  & -0.0107 & -0.0009 & 0.0066  & -0.0126 & 0.0017  & 0.0083  \\
+-0.0107 & -0.0027 & -0.0038 & 0.0017  & 0.0092  & -0.0004 & 0.0225  & -0.0067 & 0.0081  \\
+-0.0083 & 0.0084  & 0.0036  & -0.0016 & -0.0015 & 0.0086  & -0.0107 & -0.0009 & 0.0066  \\
+-0.0052 & 0.0017  & 0.0083  & -0.0107 & -0.0027 & -0.0019 & 0.0017  & 0.0101  & 0.0007  \\
+0.0224  & -0.0067 & 0.0081  & -0.0051 & 0.0085  & -0.0140 & 0.0036  & -0.0019 & 0.0086  \\
+-0.0107 & -0.0009 & 0.0066  & -0.0118 & 0.0017  & 0.0083  & -0.0107 & -0.0027 & -0.0024 \\
+0.0017  & 0.0104  & -0.0021 & 0.0236  & -0.0063 & 0.0089  & -0.0049 & 0.0077  & -0.0126 \\
+\end{tabular}
+\end{table}
+\begin{table}[]
+\begin{tabular}{lllllllll}
+k = 8   & fpc =   & 0.6667  &         &         &         &         &         &         \\
+-0.0006 & 0.0069  & 0.0027  & -0.0092 & 0.0071  & 0.0013  & -0.0035 & 0.0082  & 0.0026  \\
+-0.0092 & 0.0065  & -0.0032 & 0.0082  & 0.0029  & 0.0086  & 0.0031  & -0.0015 & 0.0028  \\
+-0.0007 & 0.0015  & 0.0098  & -0.0025 & 0.0077  & 0.0027  & -0.0092 & 0.0071  & 0.0013  \\
+0.0009  & 0.0082  & 0.0026  & -0.0092 & 0.0065  & -0.0016 & 0.0082  & 0.0027  & 0.0089  \\
+0.0029  & -0.0015 & 0.0030  & 0.0020  & 0.0019  & -0.0050 & 0.0007  & 0.0074  & 0.0027  \\
+-0.0092 & 0.0071  & 0.0013  & -0.0039 & 0.0082  & 0.0026  & -0.0092 & 0.0065  & -0.0017 \\
+0.0082  & 0.0030  & 0.0072  & 0.0044  & -0.0011 & 0.0042  & 0.0022  & 0.0010  & -0.0047 \\
+0.0011  & 0.0081  & 0.0035  & -0.0086 & 0.0067  & 0.0013  & -0.0041 & 0.0079  & 0.0026  \\
+        &         &         &         &         &         &         &         &         \\
+k = 9   & fpc =   & 0.6111  &         &         &         &         &         &         \\
+0.0015  & -0.0025 & 0.0086  & -0.0107 & -0.0009 & 0.0066  & -0.0126 & 0.0017  & 0.0083  \\
+-0.0107 & -0.0027 & -0.0038 & 0.0017  & 0.0092  & -0.0004 & 0.0225  & -0.0067 & 0.0081  \\
+-0.0083 & 0.0084  & 0.0036  & -0.0016 & -0.0015 & 0.0086  & -0.0107 & -0.0009 & 0.0066  \\
+-0.0052 & 0.0017  & 0.0083  & -0.0107 & -0.0027 & -0.0019 & 0.0017  & 0.0101  & 0.0007  \\
+0.0224  & -0.0067 & 0.0081  & -0.0051 & 0.0085  & -0.0140 & 0.0036  & -0.0019 & 0.0086  \\
+-0.0107 & -0.0009 & 0.0066  & -0.0118 & 0.0017  & 0.0083  & -0.0107 & -0.0027 & -0.0024 \\
+0.0017  & 0.0104  & -0.0021 & 0.0236  & -0.0063 & 0.0089  & -0.0049 & 0.0077  & -0.0126 \\
+0.0036  & -0.0011 & 0.0102  & -0.0106 & -0.0020 & 0.0066  & -0.0120 & -0.0001 & 0.0083  \\
+-0.0107 & -0.0027 & -0.0028 & 0.0041  & 0.0099  & -0.0009 & 0.0222  & -0.0067 & 0.0084  \\
+        &         &         &         &         &         &         &         &         \\
+k = 10  & fpc=    & 1.0000  &         &         &         &         &         &         \\
+-0.0005 & 0.0114  & 0.0039  & -0.0123 & 0.0122  & 0.0004  & 0.0172  & -0.0116 & 0.0040  \\
+-0.0123 & 0.0108  & 0.0000  & -0.0116 & 0.0039  & 0.0150  & -0.0071 & -0.0053 & 0.0028  \\
+0.0090  & 0.0013  & -0.0054 & -0.0014 & 0.0131  & 0.0039  & -0.0123 & 0.0122  & 0.0004  \\
+-0.0006 & -0.0116 & 0.0039  & -0.0123 & 0.0108  & -0.0011 & -0.0116 & 0.0029  & 0.0158  \\
+-0.0056 & -0.0053 & -0.0010 & 0.0130  & 0.0023  & 0.0137  & 0.0008  & 0.0125  & 0.0039  \\
+-0.0123 & 0.0122  & 0.0004  & 0.0176  & -0.0116 & 0.0039  & -0.0123 & 0.0108  & -0.0013 \\
+-0.0116 & 0.0033  & 0.0120  & -0.0063 & -0.0044 & 0.0003  & 0.0132  & 0.0007  & 0.0133  \\
+-0.0013 & 0.0139  & 0.0047  & -0.0115 & 0.0113  & 0.0004  & 0.0170  & 0.0139  & 0.0039  \\
+0.0108  & -0.0019 & -0.0087 & 0.0053  & 0.0122  & -0.0061 & -0.0053 & -0.0012 & 0.0108  \\
+0.0015  & 0.0132  & 0.0003  & 0.0126  & 0.0039  & -0.0123 & 0.0122  & 0.0004  & 0.0138 
+\end{tabular}
+\end{table}
 \end{document}
