@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 MAY 2016 14:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 MAY 2016 18:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -219,14 +219,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--22
 File: images/saline_tight.png Graphic file (type png)
 
 <use images/saline_tight.png>
-Package pdftex.def Info: images/saline_tight.png used on input line 44.
+Package pdftex.def Info: images/saline_tight.png used on input line 43.
 (pdftex.def)             Requested size: 234.8775pt x 131.9235pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 50.
+LaTeX Font Info:    Try loading font information for U+msa on input line 49.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 50.
+LaTeX Font Info:    Try loading font information for U+msb on input line 49.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -234,115 +234,113 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
 s/saline_tight.png>] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 72.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 73.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 72.
-
-
-LaTeX Warning: Reference `betterchar' on page 3 undefined on input line 88.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 73.
 
 [3] <images/induced.png, id=21, 663.47874pt x 390.45876pt>
 File: images/induced.png Graphic file (type png)
 
 <use images/induced.png>
-Package pdftex.def Info: images/induced.png used on input line 101.
+Package pdftex.def Info: images/induced.png used on input line 100.
 (pdftex.def)             Requested size: 328.82707pt x 193.51302pt.
  [4] [5 <./images/induced.png>] [6] [7]
 <images/k5.png, id=41, 498.86375pt x 388.45125pt>
 File: images/k5.png Graphic file (type png)
  <use images/k5.png>
-Package pdftex.def Info: images/k5.png used on input line 147.
+Package pdftex.def Info: images/k5.png used on input line 146.
 (pdftex.def)             Requested size: 184.9429pt x 144.00922pt.
 
 <images/k6.png, id=42, 499.8675pt x 389.455pt>
 File: images/k6.png Graphic file (type png)
  <use images/k6.png>
-Package pdftex.def Info: images/k6.png used on input line 147.
+Package pdftex.def Info: images/k6.png used on input line 146.
 (pdftex.def)             Requested size: 184.9429pt x 144.09015pt.
 
 <images/k7.png, id=43, 498.86375pt x 389.455pt>
 File: images/k7.png Graphic file (type png)
  <use images/k7.png>
-Package pdftex.def Info: images/k7.png used on input line 149.
+Package pdftex.def Info: images/k7.png used on input line 148.
 (pdftex.def)             Requested size: 184.9429pt x 144.38133pt.
 
 <images/k8.png, id=44, 499.8675pt x 389.455pt>
 File: images/k8.png Graphic file (type png)
  <use images/k8.png>
-Package pdftex.def Info: images/k8.png used on input line 149.
+Package pdftex.def Info: images/k8.png used on input line 148.
 (pdftex.def)             Requested size: 184.9429pt x 144.09015pt.
 
-<images/k9.png, id=45, 498.86375pt x 389.455pt>
+<images/k9.png, id=45, 883.3pt x 689.57625pt>
 File: images/k9.png Graphic file (type png)
  <use images/k9.png>
-Package pdftex.def Info: images/k9.png used on input line 156.
-(pdftex.def)             Requested size: 184.9429pt x 144.38133pt.
+Package pdftex.def Info: images/k9.png used on input line 155.
+(pdftex.def)             Requested size: 184.9429pt x 144.37335pt.
 
 <images/k10.png, id=46, 499.8675pt x 388.45125pt>
 File: images/k10.png Graphic file (type png)
  <use images/k10.png>
-Package pdftex.def Info: images/k10.png used on input line 156.
+Package pdftex.def Info: images/k10.png used on input line 155.
 (pdftex.def)             Requested size: 184.9429pt x 143.71878pt.
- [8 <./images/k5.png> <./images/k6.png> <./images/k7.png> <./images/k8.png>]
-<images/k_means_sil.png, id=54, 764.8575pt x 341.77687pt>
+ [8]
+[9 <./images/k5.png> <./images/k6.png> <./images/k7.png> <./images/k8.png>]
+<images/k_means_sil.png, id=57, 764.8575pt x 341.77687pt>
 File: images/k_means_sil.png Graphic file (type png)
 
 <use images/k_means_sil.png>
-Package pdftex.def Info: images/k_means_sil.png used on input line 164.
+Package pdftex.def Info: images/k_means_sil.png used on input line 163.
 (pdftex.def)             Requested size: 352.31625pt x 157.43307pt.
- [9 <./images/k9.png> <./images/k10.png> <./images/k_means_sil.png>]
+ [10 <./images/k9.png> <./images/k10.png> <./images/k_means_sil.png>] <images/k
+9disc.png, id=64, 498.86375pt x 389.455pt>
+File: images/k9disc.png Graphic file (type png)
 
-LaTeX Warning: Citation `betterchar' on page 10 undefined on input line 180.
-
-[10]
-Underfull \hbox (badness 2197) in paragraph at lines 199--202
+<use images/k9disc.png>
+Package pdftex.def Info: images/k9disc.png used on input line 175.
+(pdftex.def)             Requested size: 198.46776pt x 154.94133pt.
+ [11 <./images/k9disc.png>] [12]
+Underfull \hbox (badness 2197) in paragraph at lines 207--210
 []\OT1/cmr/m/n/12 Albenze, Erik, and Sal-lie Green-berg. \OT1/cmr/m/it/12 Mid-w
 est Ge-o-log-i-cal Se-ques-tra-tion Con-sor-
  []
 
 
-Underfull \hbox (badness 1014) in paragraph at lines 209--212
+Underfull \hbox (badness 1014) in paragraph at lines 217--220
 []\OT1/cmr/m/n/12 Brown, Bruce, and Ken Nemeth. \OT1/cmr/m/it/12 South-east Re-
 gional Car-bon Se-ques-tra-tion Part-
  []
 
-[11]
+[13] [14]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 282.
+               Default added (so using `tbp') on input line 290.
 
-[12] [13] (./Paper.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[15] [16] (./Paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3301 strings out of 493089
- 51344 string characters out of 6134842
- 221864 words of memory out of 5000000
- 6732 multiletter control sequences out of 15000+600000
+ 3307 strings out of 493089
+ 51445 string characters out of 6134842
+ 221893 words of memory out of 5000000
+ 6737 multiletter control sequences out of 15000+600000
  11849 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,11n,42p,1134b,370s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
-/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
-al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Paper.pdf (13 pages, 3523972 bytes).
+ 44i,11n,42p,1511b,370s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
+2.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb>
+Output written on Paper.pdf (16 pages, 3716382 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 125 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

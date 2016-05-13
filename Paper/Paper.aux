@@ -5,7 +5,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Carbon Storage}{1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Potential Storage Site: Saline Formations}{1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  A map of the United States overlaid with geological saline resources for potential carbon storage (blue), stationary sources of petroleum and natural gas (brown) and other oil and gas resources (red) \cite  {atlas}\relax }}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  A map of the United States overlaid with geological saline resources for potential carbon storage (blue), stationary sources of petroleum and natural gas (brown) and other oil and gas resources (red) \cite  {atlas}.\relax }}{1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{salinetight}{{1}{1}}
 \citation{midwestinject}
@@ -14,11 +14,11 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Associated Risk}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Overview}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Saline Aquifer Characterization}{2}}
-\newlabel{wellchar}{{2.2}{2}}
 \citation{atlas}
 \citation{atlas}
 \citation{natcarb_risk}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Saline Aquifer Characterization}{3}}
+\newlabel{wellchar}{{2.2}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Geological Characterization}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}non-Geological Characterization}{3}}
 \citation{natcarb_risk}
@@ -34,31 +34,46 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Introduction to Fuzzy c-Means Clustering}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Application of Fuzzy c-Means Clustering}{7}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Results}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Each Figure (a - e) shows the clusters resulting from the running of the FPC algorithm for unique values if $k$. These results actually occur in 9-dimensional space, so a 6 degree Principal Component Analysis was used to reduce the dimensionality of each vector to 3 so that they could be pictured in these figures. For this reason, some of the detail gets lost, but the clusters are all still decernable.\relax }}{8}}
-\newlabel{clusterfig}{{3}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Each Figure (a - e) shows the clusters resulting from the running of the FPC algorithm for unique values if $k$. These results actually occur in 9-dimensional space, so a 6 degree Principal Component Analysis was used to reduce the dimensionality of each vector to 3 so that they could be pictured in these figures. For this reason, some of the detail gets lost, but the clusters are all still discernable. In Section 4\hbox {} we will find (d), where $k = 9$, to be the preferred clustering analysis, hence it is colored differently than the rest of the plots.\relax }}{9}}
+\newlabel{clusterfig}{{3}{9}}
 \citation{dunnbar}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  This is a silhouette plot evaluating the fit of the model to the data. It is a common method of evaluation used in addition to the FPC. This plot shows the silhouette values for each value of $k$. Note that the cluster values range from $[2,7]$. These are offset by $-3$ so a cluster value of 5 on the chart shows $k = 5 + 3 = 8$. In general, the closer the silhouette value is to 1, the better the fit of the model. \relax }}{9}}
-\newlabel{k_means_sil}{{4}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion and Analysis}{9}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.0.1}Fuzzy Clustering Results}{9}}
-\newlabel{fcmr}{{4.0.1}{9}}
-\citation{betterchar}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  This is a silhouette plot evaluating the fit of the model to the data. It is a common method of evaluation used in addition to the FPC. This plot shows the silhouette values for each value of $k$. Note that the cluster values range from $[2,7]$. These are offset by $-3$ so a cluster value of 5 on the chart shows $k = 5 + 3 = 8$. In general, the closer the silhouette value is to 1, the better the fit of the model. \relax }}{10}}
+\newlabel{k_means_sil}{{4}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion and Analysis}{10}}
+\newlabel{danda}{{4}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Fuzzy Clustering Results}{10}}
+\newlabel{fcmr}{{4.1}{10}}
+\citation{midwestinject}
+\citation{midwestinject2}
+\citation{southeastinject}
+\citation{midwestinject}
+\citation{midwestinject2}
+\citation{southeastinject}
+\citation{midwestinject}
+\citation{midwestinject2}
+\citation{southeastinject}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Translating 4.1\hbox {} to Insight on Saline Formations}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  A reproduction of Figure 3\hbox {}(d) overlayed with pointers to the points representing the formations being used in \cite  {midwestinject}, \cite  {midwestinject2}, \cite  {southeastinject}. Being that there are 180,000 points (one for each formation in the database) it is impossible to see these points directly, as they're covered by other points in their cluster.\relax }}{11}}
+\newlabel{k99disc}{{5}{11}}
+\citation{natcarb_risk}
+\citation{PredRisk2013}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Future Work}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Isolating Better Heuristics for Scoring Formation Dimensions}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Better Characterization of Saline Formations}{12}}
+\newlabel{betterchar}{{5.2}{12}}
 \bibcite{QuantRiskS2014}{1}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.0.2}Translating 4.0.1\hbox {} to Insight on Saline Formations}{10}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Future Work}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Better Characterization of Saline Formations}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Isolating Better Heuristics for Scoring Formation Dimensions}{10}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}}
 \bibcite{midwestinject}{2}
 \bibcite{midwestinject2}{3}
 \bibcite{southeastinject}{4}
 \bibcite{whysaline}{5}
 \bibcite{atlas}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Finding a Better Definition of Each Cluster}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{13}}
 \bibcite{natcarb_risk}{7}
 \bibcite{seis_induced}{8}
 \bibcite{PredRisk2013}{9}
 \bibcite{cmeanspaper}{10}
 \bibcite{dunnbar}{11}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix A}{12}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 9 dimensional coordinates of the centers found at each run of Fuzzy c-Means clustering.\relax }}{12}}
-\newlabel{tablecenters}{{1}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix A}{15}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 9 dimensional coordinates of the centers found at each run of Fuzzy c-Means clustering.\relax }}{15}}
+\newlabel{tablecenters}{{1}{15}}

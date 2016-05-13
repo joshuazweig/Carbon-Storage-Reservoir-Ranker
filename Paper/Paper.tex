@@ -26,7 +26,6 @@ A Look at the Viability of Candidate Reservoirs in the United States through\\
 Fuzzy c-Means Clustering\\
 \end{centering}
 
-
 \section*{Abstract}
 
 
@@ -42,7 +41,7 @@ Motivation and whats what
 \begin{wrapfigure}{r}{0.5\textwidth} %this figure will be at the right
     \centering
     \includegraphics[width=0.5\textwidth]{saline_tight}
-    \caption{\label{salinetight} A map of the United States overlaid with geological saline resources for potential carbon storage (blue), stationary sources of petroleum and natural gas (brown) and other oil and gas resources (red) \cite{atlas}}. 
+    \caption{\label{salinetight} A map of the United States overlaid with geological saline resources for potential carbon storage (blue), stationary sources of petroleum and natural gas (brown) and other oil and gas resources (red) \cite{atlas}.}
 \end{wrapfigure}
 
 \par Of possible candidates for long term carbon sequestration, saline formations have emerged as a promising candidate. Such formations are prevalent throughout North America. These brine coated layers of permeable rock are able to store carbon my way of "solubility trapping, mineral trapping, structural trapping and residual trapping."
@@ -56,15 +55,17 @@ Important Charecterists
 
 
 \subsubsection{Associated Risk} 
-
+Maybe use that earthquake graph here....
 
 \section{Methodology}
 \subsection{Overview}
 As described in the previous section, saline aquifers are luckily a far vast enough resource for us to currently store the desired amount of carbon. However, selecting the best aquifers for storage is a tremendous task considering the quantity of potential aquifers ($\approx180,000$) and the factors that characterize each one. For this reason we seek to develop a tool to immediately help identify some of the best candidate deep saline aquifers in the United States. 
 The fundamental workings of this tool will be in the characterization of potential aquifers based on a series of characteristics as per section \ref{wellchar}. Having fully characterized each candidate aquifer, we fully employ a Fuzzy c-Means clustering analysis to each of the $\approx180,000$, 12 dimensional vectors representing the system to create a model that will determine how strongly each aquifer is characterized by each of the 12 features, to be discusses further in section \ref{fuzz}. Once this model is created, it will allow researchers to essentially filter potential storage sites by different characteristics and determine the relative similarity of unique sets of sites. For example, we will be able to observe all aquifers that have at least a given storage capacity and/or are at least a given distance from a major fault line.  
 
+\noindent \emph{N.B. For the code that produced the results of this study, please see the repository \\at} https://github.com/joshuazweig/Carbon-Storage-Reservoir-Ranker \emph{where you can download the code and the data and run it yourself}
+
 \subsection{Saline Aquifer Characterization} \label{wellchar}
-Each of the 12 characterization dimensions falls into one of two categories. The first category of features describes the geological aspects of the formation, strictly its ability to store carbon. The second describes some of the factors that effect the potential risks and barriers to societal acceptance regarding potential storage sights. These 
+Each of the 12 characterization dimensions falls into one of two categories. The first category of features describes the geological aspects of the formation, strictly its ability to store carbon. The second describes some of the factors that effect the potential risks and barriers to societal acceptance regarding potential storage sights.
 
 \subsubsection{Geological Characterization}
 The data regarding the geological characterization of the formations is from the data set "NATCARB Saline 10K, ver. 1502)" provided by the NATCARB project at the National Energy Technology Laboratory. The data primarily contains information on formations in the United States, which is the primary reason that this work is limited in scope the formations in the U.S. The dimensions included in the data set that will be combined with the data from the next section are \cite{atlas}: 
@@ -79,8 +80,6 @@ The data regarding the geological characterization of the formations is from the
 \item \emph{Permeability} Mean permeability in millidarcies
 \item \emph{Area, Longitude and Latitude} Given by the GIS shape file
 \end{itemize}
-
-
 
 \subsubsection{non-Geological Characterization}
 
@@ -142,7 +141,7 @@ Unfortunately, there are no deterministic algorithms that exist to compute the $
 
 \begin{figure}[H]
 \centering
-\caption{\label{clusterfig} Each Figure (a - e) shows the clusters resulting from the running of the FPC algorithm for unique values if $k$. These results actually occur in 9-dimensional space, so a 6 degree Principal Component Analysis was used to reduce the dimensionality of each vector to 3 so that they could be pictured in these figures. For this reason, some of the detail gets lost, but the clusters are all still decernable.}
+\caption{\label{clusterfig} Each Figure (a - e) shows the clusters resulting from the running of the FPC algorithm for unique values if $k$. These results actually occur in 9-dimensional space, so a 6 degree Principal Component Analysis was used to reduce the dimensionality of each vector to 3 so that they could be pictured in these figures. For this reason, some of the detail gets lost, but the clusters are all still discernable. In Section \ref{danda} we will find (d), where $k = 9$, to be the preferred clustering analysis, hence it is colored differently than the rest of the plots.}
 \begin{tabular}{cc}
   \includegraphics[width=65mm]{k5} &   \includegraphics[width=65mm]{k6} \\
 (a) $k = 5, FPC = 0.6667$ & (b) $k = 6, FPC = .8333$ \\[6pt]
@@ -164,27 +163,36 @@ Unfortunately, there are no deterministic algorithms that exist to compute the $
   \includegraphics[width=0.75\textwidth]{k_means_sil}
 \end{figure}
 
-\section{Discussion and Analysis}
-\subsubsection{Fuzzy Clustering Results}\label{fcmr}
+\section{Discussion and Analysis}\label{danda}
+\subsection{Fuzzy Clustering Results}\label{fcmr}
 Before we discuss the resulting model's implications for analysis of potential carbon storage sites, we must select one of the model's presented in Figure \ref{clusterfig} as the best model. 
 The partition coefficient (FPC) will be important in choosing our preferred model. In discussing the partition coefficient following in the work of \cite{dunnbar} writing $FPC = \frac{1}{N}\sum_{k = 1}^k \sum_{i = 1}^N m_{ik}^2$. From this definition of the partitioning coefficient we find that $FPC = \frac{1}{k}$, when a given vector $j$ belongs equally to all $k$ clusters and that $FPC = 1$ when $j_{k_i} = 1$ for a unique value of $i$ and $j_{k_i} = 0$ for all other values of $i$, such that $i \in [1, k]$. Now given $FPC \in [\frac{1}{k}, 1]$ we set an optimal value of $FPC_k = avg(\frac{1}{k}, 1) =  \frac{1+k}{2k}$. 
-Originally, the clustering algorithm was to be run $\forall k \in [5,11]$. As per Figure \ref{clusterfig}, this was resolved to a maximum value of $k = 10$ because at $k = 10$ we see $FPC_10 = 1$. In examining $k = 9$, we find that $FPC_9 = \frac{10}{18} \approx \frac{11}{18}$, the optimal value of $FPC$ for $k = 9$. For all $k$, this is the closest value of $FPC_k$ to the optimal value of $FPC_k$, which immediately makes the clustering analysis for $k = 9$ the favorable choice. 
+Originally, the clustering algorithm was to be run $\forall k \in [5,11]$. As per Figure \ref{clusterfig}, this was resolved to a maximum value of $k = 10$ because at $k = 10$ we see $FPC_{10} = 1$. In examining $k = 9$, we find that $FPC_9 = \frac{10}{18} \approx \frac{11}{18}$, the optimal value of $FPC$ for $k = 9$. For all $k$, this is the closest value of $FPC_k$ to the optimal value of $FPC_k$, which immediately makes the clustering analysis for $k = 9$ the favorable choice. To further justify the choice of the clustering model of $k = 9$, we look to the silhouette diagram in Figure \ref{k_means_sil}. As touched on in Figure \ref{k_means_sil}, the better the fit of the model, the closer the silhouette value is to 1. We find this occurs near $k = 5, 7, 9$. With $k = 9$ deemed a good fit by the silhouette analysis as well, we comfortably select the clustering analysis around 9 centers as the best model for the data. 
 
+\subsection{Translating \ref{fcmr} to Insight on Saline Formations} 
+\begin{wrapfigure}{R}{.65\linewidth}
+\centering
+\includegraphics[width=.65\linewidth]{k9disc}
+\caption{\label{k99disc} A reproduction of Figure \ref{clusterfig}(d) overlayed with pointers to the points representing the formations being used in \cite{midwestinject}, \cite{midwestinject2}, \cite{southeastinject}. Being that there are 180,000 points (one for each formation in the database) it is impossible to see these points directly, as they're covered by other points in their cluster.}
+\end{wrapfigure}
 
+\par Now that we have a reasonable model for the general similarity of saline formations as well as the relationship between different features of the formations, we can apply the findings to conjecturing some of the best potential injection sites in the U.S. To begin, let's consider the saline injection projects in \cite{midwestinject}, \cite{midwestinject2}, \cite{southeastinject}. As we see in Figure \ref{fcmr}, all three of the formations used in these projects exist in the same cluster. This is a fascinating result because the model groups these formations, which were each investigated for $3+$ years before an injection was approved, together as similar based on their characteristics. For this reason, we focus our study on this cluster, cluster $A$, to discover more potentially viable injection sites. Cluster $A$ contains about 22,000 sites $\approx 12\%$ of the saline formation injection sites in the database listed by NATCARB. This makes it the third largest cluster, behind clusters $B$ and $C$ as per Figure \ref{k99disc}, with $\|B\| \approx 56\%$ and $\|C\| \approx 16\%$. \footnote{22,000 sites is far beyond what can be listed in the forum of this paper, but pulling the code down from the hosted repository listed earlier, this list can be exactly reproduced. I am actively working on a way to make such a large list useful. My current method involves reducing the list of 22,000 to a smaller list of groups that contain geographically proximate sites.} 
 
-
-There are a few silhouette values close to 1, we pick one with highest coefficent 
-\subsubsection{Translating \ref{fcmr} to Insight on Saline Formations} 
+\par Upon inspection, it is difficult to isolate exactly the dimensions and thresholds that gain a site entry into cluster $A$. However, the dimensions that are prevalent in $B$ and $C$ allow is to form something of a negative definition of $A$. 
+(You should discuss this more.......)
 
 \section{Future Work}
-\subsection{Better Characterization of Saline Formations}\cite{betterchar}
-The 12 features isolated for characterization are a minimal set for reasonable characterization of saline formations. Better and more detailed (higher dimensional) characterizations of these formations would necessarily allow for more data for Fuzzy c-Means clustering to base its similarity measures on, thereby increasing the accuracy and effectiveness of this tool. Further dimensions include the existence of a caprock over the layer of porous rock. The existence of such a caprock is extremely important to the viability of a potential site as it plays an important part in keeping the injected carbon below the surface and in place.  
-
 \subsection{Isolating Better Heuristics for Scoring Formation Dimensions}
-There likely exist some thresholds that it doesnt matter, etc (though i do an ok job now bc than it approaches zero) -- but these are prob diferent for different features
+This is the aspect of this project that I would like to develop into a tool for people that actively work on this problem. The clustering algorithm depends immediately upon every dimension of each component vector, and scoring the importance and risk involved with each scored dimension (fault line, population, national park and water source proximity). Thus, for every different method of scoring, different clusters will result. While I am able to develop heuristics, it is much more powerful for people in industries and academia that work on this problem to be able to parameterize their judgements of the weights of different characteristics of a formation and other values and have the ability to rapidly test their hypotheses against unique models. This is where the real beauty of this work lies and is the most immediate item I am working on. 
+
+\subsection{Better Characterization of Saline Formations}\label{betterchar}
+The 12 features isolated for characterization are a minimal set for reasonable characterization of saline formations. Better and more detailed (higher dimensional) characterizations of these formations would necessarily allow for more data for Fuzzy c-Means clustering to base its similarity measures on, thereby increasing the accuracy and effectiveness of this tool. Further dimensions include the existence of a caprock over the layer of porous rock. The existence of such a caprock is extremely important to the viability of a potential site as it plays an important part in keeping the injected carbon below the surface and in place. I would like to further investigate and apply some of the findings of \cite{natcarb_risk} and \cite{PredRisk2013} in order to represent every formation by the most relevantly detailed dimensions possible. 
+
+\subsection{Finding a Better Definition of Each Cluster}
+One of the paramount benefits of machine learning techniques like the Fuzzy c-Means algorithm is that it has the ability to recognize and act on patterns that humans can not possibly identify. For this reason, there are tremendous insights that lay in the way that each cluster is defined and characterized. 
+This is an extremely difficult problem, but I believe that an analysis of the vectors contained in each cluster could yield insights much deeper than the mere inspections given here. By applying the Fuzzy c-Means algorithm to each cluster independently, especially cluster $A$, could allow us to gain a better understanding of the amalgam of characteristics that define each cluster by further isolating the dimensions of the sites contained in them. 
+
 \section{Conclusion}
-
-
 
 Value judgements -- who is to say how imporatant it is to not do this under a national park, etc- --- this system allows for quick hypotheses testing based on different criteria, on different values and best of all can isolate some that meet everyones turf the best, givingbetter information of better options 
  
